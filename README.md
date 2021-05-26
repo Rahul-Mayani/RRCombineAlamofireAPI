@@ -34,6 +34,32 @@ To run the example project, clone the repo, and run spm from the Example directo
 
 ```swift
 
+/// Uses
+let createCustomSession = Session()
+let request =  RRCombineAlamofireAPI.shared
+    .setSessionManager(createCustomSession) //`Session` creates and manages Alamofire's `Request` types during their lifetimes.
+    .setHttpMethod(.get) // httpMethod: GET, POST, PUT & DELETE
+    .setURL("Your API URL")
+    .setHeaders([:]) // a dictionary of parameters to apply to a `HTTPHeaders`.
+    .setParameter([:]) // a dictionary of parameters to apply to a `URLRequest`.
+
+request.subscribe(on: DispatchQueue.global())
+    .receive(on: DispatchQueue.main)
+    .sink { (completion) in
+       switch completion {
+       case .finished:
+           break
+       case .failure(let error):
+           print(error.localizedDescription)
+       }
+    } receiveValue: { (response) in
+        /// The response of data type is Data.
+        /// <#T##Here: decode JSON Data into your custom model structure / class#>
+        print(response)
+    }
+    .cancel()
+
+
 /// Example 1
 /// Loader start
 let userIds = [1, 2, 3]
