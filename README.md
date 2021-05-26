@@ -37,11 +37,11 @@ To run the example project, clone the repo, and run spm from the Example directo
 /// Uses
 let createCustomSession = Session()
 let request =  RRCombineAlamofireAPI.shared
-    .setSessionManager(createCustomSession) //`Session` creates and manages Alamofire's `Request` types during their lifetimes.
-    .setHttpMethod(.get) // httpMethod: GET, POST, PUT & DELETE
-    .setURL("Your API URL")
-    .setHeaders([:]) // a dictionary of parameters to apply to a `HTTPHeaders`.
-    .setParameter([:]) // a dictionary of parameters to apply to a `URLRequest`.
+                  .setSessionManager(createCustomSession) //`Session` creates and manages Alamofire's `Request` types during their lifetimes.
+                  .setHttpMethod(.get) // httpMethod: GET, POST, PUT & DELETE
+                  .setURL("Your API URL")
+                  .setHeaders([:]) // a dictionary of parameters to apply to a `HTTPHeaders`.
+                  .setParameter([:]) // a dictionary of parameters to apply to a `URLRequest`.
 
 request.subscribe(on: DispatchQueue.global())
     .receive(on: DispatchQueue.main)
